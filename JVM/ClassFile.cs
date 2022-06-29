@@ -16,7 +16,7 @@ namespace JVM
         public ushort This_Class;
         public ushort Super_Class;
         public ushort Interfaces_Count;
-        public ushort Interfaces;
+        public ushort[] Interfaces;
         public ushort Fields_Count;
         public Field_Info[] Fields;
         public ushort Methods_Count;
@@ -40,18 +40,50 @@ namespace JVM
             This_Class = input.U2();
             Super_Class = input.U2();
             Interfaces_Count = input.U2();
-            Interfaces = input.U2();
+            Interfaces = new ushort[Interfaces_Count];
+            for (int i = 0; i < Interfaces_Count; i++)
+            {
+                Interfaces[i] = input.U2();
+            }
             Fields_Count = input.U2();
             for (int i = 0; i < Fields_Count; i++)
             {
                 ParseFields(ref input, i);
             }
+            Methods_Count = input.U2();
+            Methods = new Method_Info[Methods_Count];
+            for (int i = 0; i < Methods_Count; i++)
+            {
+                ParseMethods(ref input, i);
+            }
+            Attributes_Count = input.U2();
+            Attributes = new Attribute_Info[Attributes_Count];
+            for (int i = 0; i < Attributes_Count; i++)
+            {
+                ParseAttributes(ref input, i);
+            }
+
+            if(input.Length != 0)
+            {
+                throw new Exception("Bad!");
+            }
+        }
+
+        public void ParseAttributes(ref ReadOnlySpan<byte> input, int index)
+        {
+            Attribute_Info attribute = new Attribute_Info(ref input);
+            Attributes[index] = attribute;
+        }
+
+        public void ParseMethods(ref ReadOnlySpan<byte> input, int index)
+        {
+            Method_Info method = new Method_Info(ref input);
+            Methods[index] = method;
         }
 
         public void ParseFields(ref ReadOnlySpan<byte> input, int index)
         {
             Field_Info field = new Field_Info(ref input);
-            
             Fields[index] = field;
         }
 
