@@ -6,13 +6,13 @@ namespace JVM
 {
     public abstract class Cp_Info
     {
-        public byte Tag { get; }
+        public CONSTANTS Tag { get; }
 
-        public Cp_Info(byte tag)
+        public Cp_Info(CONSTANTS tag)
         {
             Tag = tag;
         }
 
-        public abstract void Parse(ref Span<byte> span); 
+        public abstract void Parse(ref ReadOnlySpan<byte> span); 
     }
 }

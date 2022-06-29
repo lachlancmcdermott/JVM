@@ -4,20 +4,22 @@ using System.Text;
 
 namespace JVM.Constants
 {
-    public class CONSTANT_MethodRef : Cp_Info
+    class CONSTANT_NameAndType :Cp_Info
     {
         public ushort Class_Index { get; set; }
         public ushort Name_And_Type_Index { get; set; }
+        public ushort Descriptor_Index { get; set; }
 
-        public CONSTANT_MethodRef(CONSTANTS tag)
+
+        public CONSTANT_NameAndType(CONSTANTS tag)
             : base(tag)
         {
 
         }
         public override void Parse(ref ReadOnlySpan<byte> span)
         {
-            Class_Index = span.U2();
             Name_And_Type_Index = span.U2();
+            Descriptor_Index = span.U2();
         }
     }
 }
