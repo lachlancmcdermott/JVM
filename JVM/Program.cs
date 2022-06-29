@@ -25,22 +25,21 @@ namespace JVM
             {
                 Console.WriteLine(ins.Constant_Pool[i]);
             }
-
-            for (int i = 0; i < ins.Constant_Pool_Count - 1; i++)
-            {
-                Console.WriteLine(ins.Constant_Pool[i]);
-            }
-
+            Console.WriteLine("Fields:");
             for (int i = 0; i < ins.Fields_Count; i++)
             {
                 Console.WriteLine(ins.Fields[i]);
             }
-
+            Console.WriteLine("Methods:");
             for (int i = 0; i < ins.Methods_Count; i++)
             {
                 Console.WriteLine(ins.Methods[i]);
             }
-
+            Console.WriteLine("Attributes:");
+            for (int i = 0; i < ins.Attributes_Count; i++)
+            {
+                Console.WriteLine(ins.Attributes[i]);
+            }
 
 
         }
