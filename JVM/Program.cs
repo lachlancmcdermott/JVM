@@ -1,4 +1,7 @@
-﻿using System;
+﻿using JVM.Constants;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace JVM
 {
@@ -10,16 +13,21 @@ namespace JVM
             ReadOnlySpan<byte> span = new ReadOnlySpan<byte>(file);
 
             ClassFile ins = new ClassFile(file);
+            Method_Info mainInfo = ins.FindMethod("main");
+            Attribute_Info code = ins.FindCode(ins);
 
-            if(ins.Magic != 3405691582)
+            //get code attribute
+            //parse descriptor
+
+            #region debug
+            if (ins.Magic != 3405691582)
             {
-                throw new Exception ("Not valid Java!");
+                throw new Exception("Not valid Java!");
             }
 
-            Console.WriteLine(ins.Magic);
-            Console.WriteLine(ins.Major_Version);
-            Console.WriteLine(ins.Minor_Version);
-            Console.WriteLine(ins.Constant_Pool_Count);
+            Console.WriteLine("Magic: " + ins.Magic);
+            Console.WriteLine("Minor Version: " + ins.Major_Version);
+            Console.WriteLine("Minor Version: " + ins.Minor_Version);
             Console.WriteLine("Constant Pool:");
             for (int i = 0; i < ins.Constant_Pool_Count - 1; i++)
             {
@@ -40,8 +48,7 @@ namespace JVM
             {
                 Console.WriteLine(ins.Attributes[i]);
             }
-
-
+            #endregion
         }
     }
 }

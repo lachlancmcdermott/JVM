@@ -6,15 +6,15 @@ namespace JVM
 {
     public class Method_Info
     {
-        ushort Access_Flags;
-        ushort Name_Index;
-        ushort Descriptor_Index;
-        ushort Attributes_Count;
+        public MethodAccessFlags Access_Flags;
+        public ushort Name_Index;
+        public ushort Descriptor_Index;
+        public ushort Attributes_Count;
         Attribute_Info[] Attributes;
 
         public Method_Info(ref ReadOnlySpan<byte> input)
         {
-            Access_Flags = input.U2();
+            Access_Flags = (MethodAccessFlags)input.U2();
             Name_Index = input.U2();
             Descriptor_Index = input.U2();
             Attributes_Count = input.U2();

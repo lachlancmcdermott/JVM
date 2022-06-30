@@ -69,6 +69,44 @@ namespace JVM
             }
         }
 
+        //code attribute info
+        //parse attributes
+
+        public Method_Info FindMethod(string method)
+        {
+            List<Method_Info> filtered = new List<Method_Info>();
+            for (int i = 0; i < this.Methods.Length; i++)
+            {
+                if (this.Methods[i].Access_Flags == (MethodAccessFlags.ACC_STATIC | MethodAccessFlags.ACC_PUBLIC))
+                {
+                    filtered.Add(this.Methods[i]);
+                }
+            }
+            for (int i = 0; i < filtered.Count; i++)
+            {
+                CONSTANT_Utf8 test = (CONSTANT_Utf8)this.Constant_Pool[filtered[i].Name_Index - 1];
+                string find = Encoding.UTF8.GetString(test.bytes);
+                if (method == "main")
+                {
+                    return filtered[i];
+                }
+            }
+            return null;
+        }
+
+        public Attribute_Info FindCode(string method, ClassFile ins)
+        {
+            Method_Info work = FindMethod(method);
+
+            for (int i = 0; i < ins.Constant_Pool_Count; i++)
+            {
+                int attributeNameIndex = ins.Attributes[i].Attribute_Name_Index;
+                CONSTANT_Utf8 test = (CONSTANT_Utf8)ins.Constant_Pool[attributeNameIndex - 1];
+                string info = Encoding.UTF8.GetString(test.bytes);
+            }
+            return null;
+        }
+
         public void ParseAttributes(ref ReadOnlySpan<byte> input, int index)
         {
             Attribute_Info attribute = new Attribute_Info(ref input);

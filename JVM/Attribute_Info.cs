@@ -6,9 +6,9 @@ namespace JVM
 {
     public class Attribute_Info
     {
-        public ushort Attribute_Name_Index;
-        public uint Attribute_Length;
-        public byte[] Info; 
+        public virtual ushort Attribute_Name_Index { get; set; }
+        public uint Attribute_Length { get; set; }
+        public byte[] Info { get; private set; }
 
         public Attribute_Info(ref ReadOnlySpan<byte> input)
         {
@@ -20,6 +20,12 @@ namespace JVM
             {
                 Info[i] = input.U1();
             }
+        }
+
+        public virtual void Parse(ref ReadOnlySpan<byte> input)
+        {
+
+            input.U2();
         }
     }
 }
