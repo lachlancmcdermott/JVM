@@ -17,7 +17,7 @@ namespace JVM
             Attribute_Info code = ins.FindCode(ins);
 
             //get code attribute
-            //parse descriptor
+            //give parsing descriptors a shot
 
             #region debug
             if (ins.Magic != 3405691582)
