@@ -18,8 +18,8 @@ namespace JVM
         public ushort Attributes_Count { get; private set; }
         Attribute_Info[] Attributes { get; set; }
 
-        public Code_Attribute_Info(ref ReadOnlySpan<byte> input)
-            : base(ref input)
+        public Code_Attribute_Info(ref ReadOnlySpan<byte> input, ushort Name_Index, Cp_Info[] Constant_Pool)
+            : base(ref input, Name_Index)
         {
             Max_Stack = input.U2();
             Max_Locals = input.U2();
@@ -39,13 +39,9 @@ namespace JVM
             Attributes = new Attribute_Info[Attributes_Count];
             for (int i = 0; i < Attributes_Count; i++)
             {
-                Attributes[i] = new Attribute_Info(ref input);
+                Attributes[i] = Attribute_Info.Parse(ref input, Constant_Pool);
             }
         }
 
-        public override void Parse(ref ReadOnlySpan<byte> input)
-        {
-
-        }
     }
 }

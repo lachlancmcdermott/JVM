@@ -19,5 +19,10 @@ namespace JVM
         public static uint U4(this ref ReadOnlySpan<byte> span)
             => (uint)(U2(ref span) << 16 | U2(ref span));
 
+        public static string ByteToString(this byte[] input)
+        {
+            return Encoding.UTF8.GetString(input);
+        }
+
     }
 }

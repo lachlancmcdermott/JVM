@@ -69,9 +69,6 @@ namespace JVM
             }
         }
 
-        //code attribute info
-        //parse attributes
-
         public Method_Info FindMethod(string method)
         {
             List<Method_Info> filtered = new List<Method_Info>();
@@ -102,20 +99,18 @@ namespace JVM
             {
                 int attributeNameIndex = ins.Attributes[i].Attribute_Name_Index;
                 CONSTANT_Utf8 test = (CONSTANT_Utf8)ins.Constant_Pool[attributeNameIndex - 1];
-                string info = Encoding.UTF8.GetString(test.bytes);
             }
             return null;
         }
 
         public void ParseAttributes(ref ReadOnlySpan<byte> input, int index)
         {
-            Attribute_Info attribute = new Attribute_Info(ref input);
-            Attributes[index] = attribute;
+            Attributes[index] = Attribute_Info.Parse(ref input, Constant_Pool);
         }
 
         public void ParseMethods(ref ReadOnlySpan<byte> input, int index)
         {
-            Method_Info method = new Method_Info(ref input);
+            Method_Info method = new Method_Info(ref input, Constant_Pool);
             Methods[index] = method;
         }
 

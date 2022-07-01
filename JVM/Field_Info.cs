@@ -22,7 +22,7 @@ namespace JVM
             Attributes = new Attribute_Info[Attributes_Count];
             for (int i = 0; i < Attributes.Length; i++)
             {
-                Attributes[i] = new Attribute_Info(ref input);
+                Attributes[i] = new Attribute_Info(ref input, Name_Index);
             }
         }
     }
