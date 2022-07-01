@@ -7,8 +7,6 @@ namespace JVM
 {
     class Program
     {
-        //static public Stack<int> stack = new Stack<int>();
-
         static void Main(string[] args)
         {
             Stack<int> stack = new Stack<int>();
@@ -16,7 +14,7 @@ namespace JVM
             ReadOnlySpan<byte> span = new ReadOnlySpan<byte>(file);
             ClassFile ins = new ClassFile(file);
 
-            if (ins.Magic != 3405691582)
+            if (ins.Magic != 0xCAFEBABE)
             {
                 throw new Exception("Not valid Java!");
             }

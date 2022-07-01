@@ -7,8 +7,8 @@ namespace JVM
 {
     public class Attribute_Info
     {
-        public virtual ushort Attribute_Name_Index { get; set; }
-        public uint Attribute_Length { get; set; }
+        public virtual ushort Attribute_Name_Index { get; private set; }
+        public uint Attribute_Length { get; private set; }
         public byte[] Info { get; private set; }
 
         public Attribute_Info(ref ReadOnlySpan<byte> input, ushort Name_Index)

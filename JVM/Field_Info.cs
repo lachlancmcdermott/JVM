@@ -6,11 +6,11 @@ namespace JVM
 {
     public class Field_Info
     {
-        public ushort Access_Flags;
-        public ushort Name_Index;
-        public ushort Descriptor_Index;
-        public ushort Attributes_Count;
-        Attribute_Info[] Attributes;
+        public ushort Access_Flags { get; private set; }
+        public ushort Name_Index { get; private set; }
+        public ushort Descriptor_Index { get; private set; }
+        public ushort Attributes_Count { get; private set; }
+        Attribute_Info[] Attributes { get; set; }
 
         public Field_Info(ref ReadOnlySpan<byte> input)
         {

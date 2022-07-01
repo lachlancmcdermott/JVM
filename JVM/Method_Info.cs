@@ -6,12 +6,12 @@ namespace JVM
 {
     public class Method_Info
     {
-        int[] Locals;
-        public MethodAccessFlags Access_Flags;
-        public ushort Name_Index;
-        public ushort Descriptor_Index;
-        public ushort Attributes_Count;
-        Attribute_Info[] Attributes;
+        int[] Locals { get; set; }
+        public MethodAccessFlags Access_Flags { get; private set; }
+        public ushort Name_Index { get; private set; }
+        public ushort Descriptor_Index { get; private set; }
+        public ushort Attributes_Count { get; private set; }
+        Attribute_Info[] Attributes { get; set; }
 
         public Method_Info(ref ReadOnlySpan<byte> input, Cp_Info[] Constant_Pool)
         {
@@ -91,6 +91,22 @@ namespace JVM
                         {
                             throw new Exception("bad");
                         }
+                        break;
+
+                    case INSTRUCTIONS.aload_0:
+
+                        break;
+
+                    case INSTRUCTIONS.invokespecial:
+                        
+                        break;
+
+                    case INSTRUCTIONS.invokestatic:
+                        
+                        break;
+
+                    case INSTRUCTIONS.ireturn:
+                        
                         break;
                 }
             }

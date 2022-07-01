@@ -6,7 +6,7 @@ namespace JVM
 {
     public abstract class Cp_Info
     {
-        public CONSTANTS Tag { get; }
+        public CONSTANTS Tag { get; private set; }
 
         public Cp_Info(CONSTANTS tag)
         {

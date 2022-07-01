@@ -82,6 +82,10 @@ namespace JVM
         iload_2 = 0x1c,
         iadd = 0x60,
         ireturn = 0xac,
-        @return = 0xb1,   
+        @return = 0xb1,
+        invokestatic = 0xb8,
+        aload_0 = 0x2a,
+        invokespecial = 0xb7,
+
     }
 }

@@ -7,22 +7,22 @@ namespace JVM
 {
     public class ClassFile
     {
-        public uint Magic { get; set; }
-        public ushort Minor_Version;
-        public ushort Major_Version;
-        public ushort Constant_Pool_Count;
-        public Cp_Info[] Constant_Pool;
-        public ushort Access_Flags;
-        public ushort This_Class;
-        public ushort Super_Class;
-        public ushort Interfaces_Count;
-        public ushort[] Interfaces;
-        public ushort Fields_Count;
-        public Field_Info[] Fields;
-        public ushort Methods_Count;
-        public Method_Info[] Methods;
-        public ushort Attributes_Count;
-        public Attribute_Info[] Attributes;
+        public uint Magic { get; private set; }
+        public ushort Minor_Version { get; private set; }
+        public ushort Major_Version { get; private set; }
+        public ushort Constant_Pool_Count { get; private set; }
+        public Cp_Info[] Constant_Pool { get; private set; }
+        public ushort Access_Flags { get; private set; }
+        public ushort This_Class { get; private set; }
+        public ushort Super_Class { get; private set; }
+        public ushort Interfaces_Count { get; private set; }
+        public ushort[] Interfaces { get; private set; }
+        public ushort Fields_Count { get; private set; }
+        public Field_Info[] Fields { get; private set; }
+        public ushort Methods_Count { get; private set; }
+        public Method_Info[] Methods { get; private set; }
+        public ushort Attributes_Count { get; private set; }
+        public Attribute_Info[] Attributes { get; private set; }
 
         public ClassFile(byte[] ins)
         {
