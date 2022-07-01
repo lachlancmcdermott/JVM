@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JVM.Constants;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -27,7 +28,7 @@ namespace JVM
             }
         }
 
-        public void Execute(Stack<int> stack)
+        public void Execute(Stack<int> stack, Cp_Info[] Constant_Pool)
         {
             Locals = new int[10];
             //Identify code attribute
@@ -64,6 +65,9 @@ namespace JVM
                         Locals[2] = stack.Peek();
                         stack.Pop();
                         break;
+                    case INSTRUCTIONS.iload_0:
+                        stack.Push(Locals[0]);
+                        break;
 
                     case INSTRUCTIONS.iload_1:
                         stack.Push(Locals[1]);
@@ -93,20 +97,13 @@ namespace JVM
                         }
                         break;
 
-                    case INSTRUCTIONS.aload_0:
-
-                        break;
-
-                    case INSTRUCTIONS.invokespecial:
-                        
-                        break;
-
                     case INSTRUCTIONS.invokestatic:
-                        
+                        //go to constant pool at line #, and get the method ref, find and run method
+                        Cp_Info methRef = Constant_Pool[attr.Code[k + 1]];
+                        methRef = 
                         break;
 
                     case INSTRUCTIONS.ireturn:
-                        
                         break;
                 }
             }

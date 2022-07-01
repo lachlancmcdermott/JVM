@@ -78,6 +78,7 @@ namespace JVM
         istore_1 = 0x3c,
         istore_2 = 0x3d,
         istore_3 = 0x3e,
+        iload_0 = 0x1a,
         iload_1 = 0x1b,
         iload_2 = 0x1c,
         iadd = 0x60,

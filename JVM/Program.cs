@@ -20,7 +20,7 @@ namespace JVM
             }
 
             Method_Info mainInfo = ins.FindMethod("main");
-            mainInfo.Execute(stack);
+            mainInfo.Execute(stack, ins.Constant_Pool);
         }
     }
 }

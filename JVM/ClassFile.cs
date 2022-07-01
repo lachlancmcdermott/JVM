@@ -91,18 +91,6 @@ namespace JVM
             return null;
         }
 
-        public Attribute_Info FindCode(string method, ClassFile ins)
-        {
-            Method_Info work = FindMethod(method);
-
-            for (int i = 0; i < ins.Constant_Pool_Count; i++)
-            {
-                int attributeNameIndex = ins.Attributes[i].Attribute_Name_Index;
-                CONSTANT_Utf8 test = (CONSTANT_Utf8)ins.Constant_Pool[attributeNameIndex - 1];
-            }
-            return null;
-        }
-
         public void ParseAttributes(ref ReadOnlySpan<byte> input, int index)
         {
             Attributes[index] = Attribute_Info.Parse(ref input, Constant_Pool);
