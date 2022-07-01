@@ -25,7 +25,6 @@ namespace JVM
         public virtual void Parse(ref ReadOnlySpan<byte> input)
         {
 
-            input.U2();
         }
     }
 }

@@ -14,10 +14,9 @@ namespace JVM
 
             ClassFile ins = new ClassFile(file);
             Method_Info mainInfo = ins.FindMethod("main");
-            Attribute_Info code = ins.FindCode(ins);
+            Attribute_Info code = ins.FindCode("main", ins);
 
             //get code attribute
-            //give parsing descriptors a shot
 
             #region debug
             if (ins.Magic != 3405691582)
